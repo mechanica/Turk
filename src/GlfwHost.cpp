@@ -145,10 +145,10 @@ int GLFWCALL onWindowClose()
 {
     int result = GL_TRUE;
     
-	if ( MOAIHostMgr::Get().GetOnWindowClosedLuaFunction() ) {
-		MOAILuaStateHandle state = MOAIHostMgr::Get().GetOnWindowClosedLuaFunction().GetSelf ();
+	if ( !MOAIHostMgr::Get().GetOnWindowClosedLuaFunction()->IsNil() ) {
+		MOAILuaStateHandle state = MOAIHostMgr::Get().GetOnWindowClosedLuaFunction()->GetSelf();
 		state.DebugCall ( 0, 1 );
-        result = state.GetValue < int >( 0, GL_FALSE );
+        result = state.GetValue < int >( 0, GL_TRUE );
 	}
     
     return result;

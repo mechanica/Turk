@@ -39,7 +39,7 @@ public:
 					MOAIHostMgr			();
 					~MOAIHostMgr		();
 	void			RegisterLuaClass	( MOAILuaState& state );
-    MOAILuaRef		GetOnWindowClosedLuaFunction ();
+    MOAILuaRef*		GetOnWindowClosedLuaFunction ();
 };
 
 #endif

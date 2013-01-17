@@ -120,9 +120,9 @@ int MOAIHostMgr::_setOnWindowCloseCalback ( lua_State* L ) {
 	return 0;
 }
 
-MOAILuaRef MOAIHostMgr::GetOnWindowClosedLuaFunction()
+MOAILuaRef* MOAIHostMgr::GetOnWindowClosedLuaFunction()
 {
-	return mOnWindowClosed;
+	return &mOnWindowClosed;
 }
 
 //================================================================//
