@@ -112,6 +112,20 @@ int MOAIHostMgr::_disable( lua_State* L )
 	return 0;
 }
 
+int MOAIHostMgr::_setOnWindowCloseCalback ( lua_State* L ) {
+	MOAILuaState state ( L );
+	if ( state.CheckParams ( 1 , "F" ) ) {
+		MOAIHostMgr::Get().mOnWindowClosed.SetStrongRef ( state, 1 );
+	}
+	
+	return 0;
+}
+
+MOAILuaRef MOAIHostMgr::GetOnWindowClosedLuaFunction()
+{
+	return mOnWindowClosed;
+}
+
 //================================================================//
 // MOAIHostMgr
 //================================================================//
@@ -224,6 +238,7 @@ void MOAIHostMgr::RegisterLuaClass ( MOAILuaState& state ) {
 		{ "minimiseWindow", _minimiseWindow },
 		{ "restoreWindow", _restoreWindow },
 		{ "setWindowPosition", _setWindowPos },
+        { "setOnWindowCloseCallback", _setOnWindowCloseCalback },
 		{ "getNumberOfProcessors", _getNumberOfProcessors },
 		{ "enable", _enable },
 		{ "disable", _disable },
