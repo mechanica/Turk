@@ -7,11 +7,10 @@
 //
 
 #include <iostream>
-#include <GL/glfw.h>
+#include <GL/glfw3.h>
 #include "GlfwHost.h"
 
 void initializeGLFW ();
-void createOpenGLWindow ();
 
 void initializeGLFW ()
 {
@@ -21,21 +20,11 @@ void initializeGLFW ()
     }
 }
 
-void createOpenGLWindow()
-{
-    if( !glfwOpenWindow(1024, 768, 0, 0, 0, 0, 0, 0, GLFW_WINDOW) )
-    {
-        glfwTerminate();
-        exit(EXIT_FAILURE);
-    }
-}
-
 int main (int argc, const char * argv[])
 {
     initializeGLFW();
     GlfwHost(argc, argv);
     
-    std::cout << "Goodbye, World!\n";
     glfwTerminate();
     exit(EXIT_SUCCESS);
     return 0;

@@ -3,7 +3,8 @@
 
 #include "pch.h"
 #include "MOAIHostMgr.h"
-#include <GL/glfw.h>
+#include "GlfwHost.h"
+#include <GL/glfw3.h>
 
 //================================================================//
 // lua
@@ -13,7 +14,7 @@ int MOAIHostMgr::_setWindowSize ( lua_State* L )
 {
 	int width = lua_tointeger(L, 1);
 	int height = lua_tointeger(L, 2);
-	glfwSetWindowSize( width, height );
+	glfwSetWindowSize( getWindow(), width, height );
 	return 0;
 }
 
@@ -33,23 +34,21 @@ static void pushLuaKeyNumberValue( lua_State* L, const char* s, int value )
 
 int MOAIHostMgr::_getVideoModes( lua_State* L )
 {
-	int maxModes = lua_tointeger(L, 1);
 	int numModes;
-	GLFWvidmode videoModes[ maxModes ];
-	numModes = glfwGetVideoModes(videoModes, maxModes);
+	const GLFWvidmode *videoModes = glfwGetVideoModes( getWindow(), &numModes);
 	
 	lua_newtable(L);
 	int luaVideoModesTableIndex = lua_gettop(L);
 	
 	for (int i = 0; i < numModes; i++) {
-		GLFWvidmode videoMode = videoModes[i];
+		const GLFWvidmode *videoMode = videoModes + i;
 		lua_pushnumber(L, i + 1);
 		lua_newtable(L);
-		pushLuaKeyNumberValue(L, "width",		videoMode.Width);
-		pushLuaKeyNumberValue(L, "height",		videoMode.Height);
-		pushLuaKeyNumberValue(L, "redBits",		videoMode.RedBits);
-		pushLuaKeyNumberValue(L, "greenBits",	videoMode.GreenBits);
-		pushLuaKeyNumberValue(L, "blueBits",	videoMode.BlueBits);
+		pushLuaKeyNumberValue(L, "width",		videoMode->width);
+		pushLuaKeyNumberValue(L, "height",		videoMode->height);
+		pushLuaKeyNumberValue(L, "redBits",		videoMode->redBits);
+		pushLuaKeyNumberValue(L, "greenBits",	videoMode->greenBits);
+		pushLuaKeyNumberValue(L, "blueBits",	videoMode->blueBits);
 		lua_settable(L, luaVideoModesTableIndex);
 	}
 	
@@ -58,57 +57,52 @@ int MOAIHostMgr::_getVideoModes( lua_State* L )
 
 int MOAIHostMgr::_getDesktopVideoMode( lua_State* L )
 {
+	GLFWmonitor primaryMonitor = glfwGetPrimaryMonitor();
 	GLFWvidmode videoMode;
-	glfwGetDesktopMode(&videoMode);
+	glfwGetVideoMode(primaryMonitor, &videoMode);
 	lua_newtable(L);
-	pushLuaKeyNumberValue(L, "width", videoMode.Width);
-	pushLuaKeyNumberValue(L, "height", videoMode.Height);
-	pushLuaKeyNumberValue(L, "redBits", videoMode.RedBits);
-	pushLuaKeyNumberValue(L, "greenBits", videoMode.GreenBits);
-	pushLuaKeyNumberValue(L, "blueBits", videoMode.BlueBits);
+	pushLuaKeyNumberValue(L, "width",       videoMode.width);
+	pushLuaKeyNumberValue(L, "height",      videoMode.height);
+	pushLuaKeyNumberValue(L, "redBits",     videoMode.redBits);
+	pushLuaKeyNumberValue(L, "greenBits",   videoMode.greenBits);
+	pushLuaKeyNumberValue(L, "blueBits",    videoMode.blueBits);
 	return 1;
 }
 
-int MOAIHostMgr::_setWindowPos( lua_State *L )
-{
-	int x = lua_tointeger(L, 1);
-	int y = lua_tointeger(L, 2);
-	glfwSetWindowPos(x, y);
-	return 0;
-}
+//int MOAIHostMgr::_setWindowPos( lua_State *L )
+//{
+//	int x = lua_tointeger(L, 1);
+//	int y = lua_tointeger(L, 2);
+//	glfwSetWindowPos(x, y);
+//	return 0;
+//}
 
 int MOAIHostMgr::_minimiseWindow( lua_State* L )
 {
 	UNUSED(L);
-	glfwIconifyWindow();
+	glfwIconifyWindow(getWindow());
 	return 0;
 }
 
 int MOAIHostMgr::_restoreWindow( lua_State* L )
 {
 	UNUSED(L);
-	glfwRestoreWindow();
+	glfwRestoreWindow(getWindow());
 	return 0;
 }
 
-int MOAIHostMgr::_getNumberOfProcessors( lua_State* L )
-{
-	int processors = glfwGetNumberOfProcessors();
-	lua_pushinteger(L, processors);
-	return 1;
-}
+//int MOAIHostMgr::_getNumberOfProcessors( lua_State* L )
+//{
+//	int processors = glfwGetNumberOfProcessors();
+//	lua_pushinteger(L, processors);
+//	return 1;
+//}
 
-int MOAIHostMgr::_enable( lua_State* L )
+int MOAIHostMgr::_setInputMode( lua_State* L )
 {
-	int token = lua_tointeger(L, 1);
-	glfwEnable(token);
-	return 0;
-}
-
-int MOAIHostMgr::_disable( lua_State* L )
-{
-	int token = lua_tointeger(L, 1);
-	glfwDisable(token);
+	int mode = lua_tointeger(L, 1);
+    int value = lua_tointeger(L, 1);
+	glfwSetInputMode( getWindow(), mode, value);
 	return 0;
 }
 
@@ -150,15 +144,18 @@ void MOAIHostMgr::RegisterLuaClass ( MOAILuaState& state ) {
 	// MOAIFooBase::RegisterLuaClass ( state );
 	// also register constants:
 	// state.SetField ( -1, "FOO_CONST", ( u32 )FOO_CONST );
-	state.SetField(-1, "HOST_MOUSE_CURSOR", (u32)GLFW_MOUSE_CURSOR);
-	state.SetField(-1, "HOST_KEY_REPEAT", (u32)GLFW_KEY_REPEAT);
+    
+	state.SetField(-1, "HOST_CURSOR_MODE", (u32)GLFW_CURSOR_MODE);
+    state.SetField(-1, "HOST_CURSOR_NORMAL", (u32)GLFW_CURSOR_NORMAL);
+	state.SetField(-1, "HOST_CURSOR_HIDDEN", (u32)GLFW_CURSOR_HIDDEN);
+	state.SetField(-1, "HOST_CURSOR_CAPTURED", (u32)GLFW_CURSOR_CAPTURED);
+
 	state.SetField(-1, "HOST_STICKY_KEYS", (u32)GLFW_STICKY_KEYS);
 	state.SetField(-1, "HOST_STICKY_MOUSE_BUTTONS", (u32)GLFW_STICKY_MOUSE_BUTTONS);
-	state.SetField(-1, "HOST_SYSTEM_KEYS", (u32)GLFW_SYSTEM_KEYS);
     
     // Map key constants
     state.SetField(-1, "HOST_KEY_SPACE", (u32) GLFW_KEY_SPACE);
-    state.SetField(-1, "HOST_KEY_ESC", (u32) GLFW_KEY_ESC);
+    state.SetField(-1, "HOST_KEY_ESCAPE", (u32) GLFW_KEY_ESCAPE);
     state.SetField(-1, "HOST_KEY_F1", (u32) GLFW_KEY_F1);
     state.SetField(-1, "HOST_KEY_F2", (u32) GLFW_KEY_F2);
     state.SetField(-1, "HOST_KEY_F3", (u32) GLFW_KEY_F3);
@@ -188,21 +185,21 @@ void MOAIHostMgr::RegisterLuaClass ( MOAILuaState& state ) {
     state.SetField(-1, "HOST_KEY_DOWN", (u32) GLFW_KEY_DOWN);
     state.SetField(-1, "HOST_KEY_LEFT", (u32) GLFW_KEY_LEFT);
     state.SetField(-1, "HOST_KEY_RIGHT", (u32) GLFW_KEY_RIGHT);
-    state.SetField(-1, "HOST_KEY_LSHIFT", (u32) GLFW_KEY_LSHIFT);
-    state.SetField(-1, "HOST_KEY_RSHIFT", (u32) GLFW_KEY_RSHIFT);
-    state.SetField(-1, "HOST_KEY_LCTRL", (u32) GLFW_KEY_LCTRL);
-    state.SetField(-1, "HOST_KEY_RCTRL", (u32) GLFW_KEY_RCTRL);
-    state.SetField(-1, "HOST_KEY_LALT", (u32) GLFW_KEY_LALT);
-    state.SetField(-1, "HOST_KEY_RALT", (u32) GLFW_KEY_RALT);
-    state.SetField(-1, "HOST_KEY_LSUPER", (u32) GLFW_KEY_LSUPER);
-    state.SetField(-1, "HOST_KEY_RSUPER", (u32) GLFW_KEY_RSUPER);
+    state.SetField(-1, "HOST_KEY_LEFT_SHIFT", (u32) GLFW_KEY_LEFT_SHIFT);
+    state.SetField(-1, "HOST_KEY_RIGHT_SHIFT", (u32) GLFW_KEY_RIGHT_SHIFT);
+    state.SetField(-1, "HOST_KEY_LEFT_CONTROL", (u32) GLFW_KEY_LEFT_CONTROL);
+    state.SetField(-1, "HOST_KEY_RIGHT_CTRL", (u32) GLFW_KEY_RIGHT_CONTROL);
+    state.SetField(-1, "HOST_KEY_LEFT_ALT", (u32) GLFW_KEY_LEFT_ALT);
+    state.SetField(-1, "HOST_KEY_RIGHT_ALT", (u32) GLFW_KEY_RIGHT_ALT);
+    state.SetField(-1, "HOST_KEY_LEFT_SUPER", (u32) GLFW_KEY_LEFT_SUPER);
+    state.SetField(-1, "HOST_KEY_RIGHT_SUPER", (u32) GLFW_KEY_RIGHT_SUPER);
     state.SetField(-1, "HOST_KEY_TAB", (u32) GLFW_KEY_TAB);
     state.SetField(-1, "HOST_KEY_ENTER", (u32) GLFW_KEY_ENTER);
     state.SetField(-1, "HOST_KEY_BACKSPACE", (u32) GLFW_KEY_BACKSPACE);
     state.SetField(-1, "HOST_KEY_INSERT", (u32) GLFW_KEY_INSERT);
-    state.SetField(-1, "HOST_KEY_DEL", (u32) GLFW_KEY_DEL);
-    state.SetField(-1, "HOST_KEY_PAGEUP", (u32) GLFW_KEY_PAGEUP);
-    state.SetField(-1, "HOST_KEY_PAGEDOWN", (u32) GLFW_KEY_PAGEDOWN);
+    state.SetField(-1, "HOST_KEY_DELETE", (u32) GLFW_KEY_DELETE);
+    state.SetField(-1, "HOST_KEY_PAGE_UP", (u32) GLFW_KEY_PAGE_UP);
+    state.SetField(-1, "HOST_KEY_PAGE_DOWN", (u32) GLFW_KEY_PAGE_DOWN);
     state.SetField(-1, "HOST_KEY_HOME", (u32) GLFW_KEY_HOME);
     state.SetField(-1, "HOST_KEY_END", (u32) GLFW_KEY_END);
     state.SetField(-1, "HOST_KEY_KP_0", (u32) GLFW_KEY_KP_0);
@@ -222,7 +219,7 @@ void MOAIHostMgr::RegisterLuaClass ( MOAILuaState& state ) {
     state.SetField(-1, "HOST_KEY_KP_DECIMAL", (u32) GLFW_KEY_KP_DECIMAL);
     state.SetField(-1, "HOST_KEY_KP_EQUAL", (u32) GLFW_KEY_KP_EQUAL);
     state.SetField(-1, "HOST_KEY_KP_ENTER", (u32) GLFW_KEY_KP_ENTER);
-    state.SetField(-1, "HOST_KEY_KP_NUM_LOCK", (u32) GLFW_KEY_KP_NUM_LOCK);
+    state.SetField(-1, "HOST_KEY_NUM_LOCK", (u32) GLFW_KEY_NUM_LOCK);
     state.SetField(-1, "HOST_KEY_CAPS_LOCK", (u32) GLFW_KEY_CAPS_LOCK);
     state.SetField(-1, "HOST_KEY_SCROLL_LOCK", (u32) GLFW_KEY_SCROLL_LOCK);
     state.SetField(-1, "HOST_KEY_PAUSE", (u32) GLFW_KEY_PAUSE);
@@ -236,11 +233,8 @@ void MOAIHostMgr::RegisterLuaClass ( MOAILuaState& state ) {
 		{ "getDesktopVideoMode", _getDesktopVideoMode },
 		{ "minimiseWindow", _minimiseWindow },
 		{ "restoreWindow", _restoreWindow },
-		{ "setWindowPosition", _setWindowPos },
         { "setOnWindowCloseCallback", _setOnWindowCloseCalback },
-		{ "getNumberOfProcessors", _getNumberOfProcessors },
-		{ "enable", _enable },
-		{ "disable", _disable },
+        { "setInputMode", _setInputMode },
 		{ NULL, NULL }
 	};
 

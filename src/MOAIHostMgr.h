@@ -7,7 +7,7 @@
 #include <moaicore/pch.h>
 
 #include <moaicore/MOAILua.h>
-#include <GL/glfw.h>
+#include <GL/glfw3.h>
 
 //================================================================//
 // MOAIHostMgr
@@ -23,13 +23,10 @@ private:
 	static int		_getTime			( lua_State* L );
 	static int		_getVideoModes		( lua_State* L );
 	static int		_getDesktopVideoMode ( lua_State* L );
-    static int		_setWindowPos		( lua_State* L );
     static int		_setOnWindowCloseCalback ( lua_State* L );
     static int		_minimiseWindow		( lua_State* L );
     static int		_restoreWindow		( lua_State* L );
-    static int		_getNumberOfProcessors ( lua_State* L );
-    static int		_enable				( lua_State* L );
-    static int		_disable			( lua_State* L );
+    static int		_setInputMode		( lua_State* L );
 	
 public:
 	

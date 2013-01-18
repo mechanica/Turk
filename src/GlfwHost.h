@@ -9,6 +9,8 @@
 #ifndef MOAI_GLFW_GlfwHost_h
 #define MOAI_GLFW_GlfwHost_h
 
+GLFWwindow getWindow            ();
+
 int		GlfwHost				( int argc, const char * argv[] );
 void    LoadAKUModules          ();
 void    RefreshAKUContext       ();
@@ -18,13 +20,13 @@ void    SetupWindowMapping      ();
 void    SetupErrorMapping       ();
 void    GlfwEventLoop           ();
 
-static void GLFWCALL onKeyboardKey     ( int key, int action );
-static void GLFWCALL onKeyboardChar    ( int unicode, int action);
-static void GLFWCALL onMouseButton     ( int button, int action );
-static void GLFWCALL onMouseMove       ( int x, int y );
-static void GLFWCALL onMouseWheel      ( int pos );
-static void GLFWCALL onWindowSize      ( int width, int height );
-static int  GLFWCALL onWindowClose     ();
+static void onKeyboardKey   ( GLFWwindow window, int key, int action );
+static void onKeyboardChar  ( GLFWwindow window, int unicode, int action);
+static void onMouseButton   ( GLFWwindow window, int button, int action );
+static void onMouseMove     ( GLFWwindow window, int x, int y );
+static void onMouseWheel    ( GLFWwindow window, double x, double y );
+static void onWindowSize    ( GLFWwindow window, int width, int height );
+static int  onWindowClose   ( GLFWwindow window );
 
 void	_AKUEnterFullscreenFunc ();
 void	_AKUExitFullscreenFunc	();

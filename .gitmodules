@@ -1,3 +1,8 @@
 [submodule "3rdparty/moai-dev"]
 	path = 3rdparty/moai-dev
 	url = git://github.com/moai/moai-dev.git
+	ignore = dirty
+[submodule "3rdparty/glfw3"]
+	path = 3rdparty/glfw3
+	url = git://git.code.sf.net/p/glfw/code
+	ignore = dirty

@@ -34,6 +34,8 @@
 		CD9077A516A520980038CB0B /* MOAIHostMgr.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CD9077A316A520980038CB0B /* MOAIHostMgr.cpp */; };
 		CD9077A616A520980038CB0B /* MOAIHostMgr.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CD9077A316A520980038CB0B /* MOAIHostMgr.cpp */; };
 		CD9077A816A530000038CB0B /* Turk.icns in Resources */ = {isa = PBXBuildFile; fileRef = CD9077A716A530000038CB0B /* Turk.icns */; };
+		CDAB472716A9116B00CA8D93 /* libglfw3.a in Frameworks */ = {isa = PBXBuildFile; fileRef = CDAB46E616A910E000CA8D93 /* libglfw3.a */; };
+		CDABCA6A16A95D7C00A5C1D8 /* libglfw3.a in Frameworks */ = {isa = PBXBuildFile; fileRef = CDAB46E616A910E000CA8D93 /* libglfw3.a */; };
 		E68ED8D615E06DAF0013F6C2 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E68ED88C15E06C290013F6C2 /* Cocoa.framework */; };
 		E68ED8DD15E06E240013F6C2 /* OpenGL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E68ED8DB15E06E180013F6C2 /* OpenGL.framework */; };
 		E68ED8EA15E070F50013F6C2 /* libcrypto.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = E68ED8E915E070F50013F6C2 /* libcrypto.dylib */; };
@@ -254,6 +256,188 @@
 			remoteGlobalIDString = CD04ACB51472557F009C20E5;
 			remoteInfo = "libmoai-osx-zlcore";
 		};
+		CDAB46E516A910E000CA8D93 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = CDAB46AE16A910E000CA8D93 /* GLFW.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 4492C9B793C94A57A9AC2DEF;
+			remoteInfo = glfw;
+		};
+		CDAB46E716A910E000CA8D93 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = CDAB46AE16A910E000CA8D93 /* GLFW.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 54033C5CB24245BC8204CC56;
+			remoteInfo = Boing;
+		};
+		CDAB46E916A910E000CA8D93 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = CDAB46AE16A910E000CA8D93 /* GLFW.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 167318CA02F54DBAA040D0A7;
+			remoteInfo = Gears;
+		};
+		CDAB46EB16A910E000CA8D93 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = CDAB46AE16A910E000CA8D93 /* GLFW.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = A4A4CEA25B4E4E309E3E23A2;
+			remoteInfo = "Split View";
+		};
+		CDAB46ED16A910E000CA8D93 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = CDAB46AE16A910E000CA8D93 /* GLFW.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 766F9B0C354E4AC3BAADFACE;
+			remoteInfo = Triangle;
+		};
+		CDAB46EF16A910E000CA8D93 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = CDAB46AE16A910E000CA8D93 /* GLFW.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 0E7D6F7465FD432D81DC6531;
+			remoteInfo = Wave;
+		};
+		CDAB46F116A910E000CA8D93 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = CDAB46AE16A910E000CA8D93 /* GLFW.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = ACD701D2AB2E46ADA54B25FC;
+			remoteInfo = accuracy;
+		};
+		CDAB46F316A910E000CA8D93 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = CDAB46AE16A910E000CA8D93 /* GLFW.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = A22BDAD38633401AB39FE848;
+			remoteInfo = clipboard;
+		};
+		CDAB46F516A910E000CA8D93 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = CDAB46AE16A910E000CA8D93 /* GLFW.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 85BF013F15C946C4800E26BB;
+			remoteInfo = defaults;
+		};
+		CDAB46F716A910E000CA8D93 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = CDAB46AE16A910E000CA8D93 /* GLFW.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 589CAB6C8ACE4700856FB7FB;
+			remoteInfo = events;
+		};
+		CDAB46F916A910E000CA8D93 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = CDAB46AE16A910E000CA8D93 /* GLFW.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 4F6F38D2E45847A0815B6992;
+			remoteInfo = fsaa;
+		};
+		CDAB46FB16A910E000CA8D93 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = CDAB46AE16A910E000CA8D93 /* GLFW.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = A723791E1DC548069496AAF1;
+			remoteInfo = fsfocus;
+		};
+		CDAB46FD16A910E000CA8D93 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = CDAB46AE16A910E000CA8D93 /* GLFW.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = DCB5A6C7851C41E58C56EDE7;
+			remoteInfo = gamma;
+		};
+		CDAB46FF16A910E000CA8D93 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = CDAB46AE16A910E000CA8D93 /* GLFW.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 8589EF63248E4C3F8C02E6A3;
+			remoteInfo = glfwinfo;
+		};
+		CDAB470116A910E000CA8D93 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = CDAB46AE16A910E000CA8D93 /* GLFW.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 9A7AC47F61BC48B596F3D72C;
+			remoteInfo = iconify;
+		};
+		CDAB470316A910E000CA8D93 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = CDAB46AE16A910E000CA8D93 /* GLFW.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 82460067538F44FC9314C7B0;
+			remoteInfo = joysticks;
+		};
+		CDAB470516A910E000CA8D93 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = CDAB46AE16A910E000CA8D93 /* GLFW.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 1973E4C5A5FA4F84BE74AFA3;
+			remoteInfo = modes;
+		};
+		CDAB470716A910E000CA8D93 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = CDAB46AE16A910E000CA8D93 /* GLFW.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = D41F8A118F244989B24A5816;
+			remoteInfo = peter;
+		};
+		CDAB470916A910E000CA8D93 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = CDAB46AE16A910E000CA8D93 /* GLFW.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = D7D7411E6F694155929EDF78;
+			remoteInfo = reopen;
+		};
+		CDAB470B16A910E000CA8D93 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = CDAB46AE16A910E000CA8D93 /* GLFW.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 2B2CD1756CC040738447D33F;
+			remoteInfo = sharing;
+		};
+		CDAB470D16A910E000CA8D93 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = CDAB46AE16A910E000CA8D93 /* GLFW.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 07848DCDE20A4CA38075680B;
+			remoteInfo = tearing;
+		};
+		CDAB470F16A910E000CA8D93 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = CDAB46AE16A910E000CA8D93 /* GLFW.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 30A2F16202EC40D49D248215;
+			remoteInfo = threads;
+		};
+		CDAB471116A910E000CA8D93 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = CDAB46AE16A910E000CA8D93 /* GLFW.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 2156B5DDAA5C4B42BDFBABBD;
+			remoteInfo = title;
+		};
+		CDAB471316A910E000CA8D93 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = CDAB46AE16A910E000CA8D93 /* GLFW.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = F09AA38BBE34446F8EF37B23;
+			remoteInfo = windows;
+		};
+		CDABCA3316A940C200A5C1D8 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = CDAB46AE16A910E000CA8D93 /* GLFW.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = 334F0E25A37F44D5BFE7E12D;
+			remoteInfo = glfw;
+		};
+		CDABCA6816A95D7600A5C1D8 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = CDAB46AE16A910E000CA8D93 /* GLFW.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = 334F0E25A37F44D5BFE7E12D;
+			remoteInfo = glfw;
+		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -277,6 +461,7 @@
 		CD9077A316A520980038CB0B /* MOAIHostMgr.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = MOAIHostMgr.cpp; sourceTree = "<group>"; };
 		CD9077A416A520980038CB0B /* MOAIHostMgr.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MOAIHostMgr.h; sourceTree = "<group>"; };
 		CD9077A716A530000038CB0B /* Turk.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; path = Turk.icns; sourceTree = "<group>"; };
+		CDAB46AE16A910E000CA8D93 /* GLFW.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = GLFW.xcodeproj; path = 3rdparty/glfw3/GLFW.xcodeproj; sourceTree = "<group>"; };
 		E68ED88C15E06C290013F6C2 /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = System/Library/Frameworks/Cocoa.framework; sourceTree = SDKROOT; };
 		E68ED8C815E06D110013F6C2 /* MOAI-GLFW */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = "MOAI-GLFW"; sourceTree = BUILT_PRODUCTS_DIR; };
 		E68ED8DB15E06E180013F6C2 /* OpenGL.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGL.framework; path = SDKs/MacOSX10.7.sdk/System/Library/Frameworks/OpenGL.framework; sourceTree = DEVELOPER_DIR; };
@@ -300,6 +485,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CDABCA6A16A95D7C00A5C1D8 /* libglfw3.a in Frameworks */,
 				CD90777316A425790038CB0B /* OpenGL.framework in Frameworks */,
 				CD90777116A425720038CB0B /* Cocoa.framework in Frameworks */,
 				CD90777416A425F30038CB0B /* AudioUnit.framework in Frameworks */,
@@ -324,6 +510,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CDAB472716A9116B00CA8D93 /* libglfw3.a in Frameworks */,
 				CD327CA216A4151E00604307 /* libmoai-osx-3rdparty.a in Frameworks */,
 				CD327CA316A4151E00604307 /* libmoai-osx-luaext.a in Frameworks */,
 				CD327CA416A4151E00604307 /* libmoai-osx-untz.a in Frameworks */,
@@ -391,6 +578,37 @@
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
+		CDAB46AF16A910E000CA8D93 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				CDAB46E616A910E000CA8D93 /* libglfw3.a */,
+				CDAB46E816A910E000CA8D93 /* Boing */,
+				CDAB46EA16A910E000CA8D93 /* Gears */,
+				CDAB46EC16A910E000CA8D93 /* Split View */,
+				CDAB46EE16A910E000CA8D93 /* Triangle */,
+				CDAB46F016A910E000CA8D93 /* Wave */,
+				CDAB46F216A910E000CA8D93 /* accuracy */,
+				CDAB46F416A910E000CA8D93 /* clipboard */,
+				CDAB46F616A910E000CA8D93 /* defaults */,
+				CDAB46F816A910E000CA8D93 /* events */,
+				CDAB46FA16A910E000CA8D93 /* fsaa */,
+				CDAB46FC16A910E000CA8D93 /* fsfocus */,
+				CDAB46FE16A910E000CA8D93 /* gamma */,
+				CDAB470016A910E000CA8D93 /* glfwinfo */,
+				CDAB470216A910E000CA8D93 /* iconify */,
+				CDAB470416A910E000CA8D93 /* joysticks */,
+				CDAB470616A910E000CA8D93 /* modes */,
+				CDAB470816A910E000CA8D93 /* peter */,
+				CDAB470A16A910E000CA8D93 /* reopen */,
+				CDAB470C16A910E000CA8D93 /* sharing */,
+				CDAB470E16A910E000CA8D93 /* tearing */,
+				CDAB471016A910E000CA8D93 /* threads */,
+				CDAB471216A910E000CA8D93 /* title */,
+				CDAB471416A910E000CA8D93 /* windows */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
 		E68ED87B15E06C0F0013F6C2 = {
 			isa = PBXGroup;
 			children = (
@@ -414,6 +632,7 @@
 		E68ED88B15E06C290013F6C2 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				CDAB46AE16A910E000CA8D93 /* GLFW.xcodeproj */,
 				CD327C5916A414C800604307 /* libmoai.xcodeproj */,
 				E68ED90015E0857E0013F6C2 /* AudioUnit.framework */,
 				E68ED8FE15E085760013F6C2 /* CoreAudio.framework */,
@@ -457,6 +676,7 @@
 			buildRules = (
 			);
 			dependencies = (
+				CDABCA6916A95D7600A5C1D8 /* PBXTargetDependency */,
 				CD90776116A4251C0038CB0B /* PBXTargetDependency */,
 				CD90776316A4251C0038CB0B /* PBXTargetDependency */,
 				CD90776516A4251C0038CB0B /* PBXTargetDependency */,
@@ -479,6 +699,7 @@
 			buildRules = (
 			);
 			dependencies = (
+				CDABCA3416A940C200A5C1D8 /* PBXTargetDependency */,
 				CD327C9916A414E700604307 /* PBXTargetDependency */,
 				CD327C9B16A414E700604307 /* PBXTargetDependency */,
 				CD327C9D16A414E700604307 /* PBXTargetDependency */,
@@ -510,6 +731,10 @@
 			productRefGroup = E68ED88915E06C290013F6C2 /* Products */;
 			projectDirPath = "";
 			projectReferences = (
+				{
+					ProductGroup = CDAB46AF16A910E000CA8D93 /* Products */;
+					ProjectRef = CDAB46AE16A910E000CA8D93 /* GLFW.xcodeproj */;
+				},
 				{
 					ProductGroup = CD327C5A16A414C800604307 /* Products */;
 					ProjectRef = CD327C5916A414C800604307 /* libmoai.xcodeproj */;
@@ -657,6 +882,185 @@
 			remoteRef = CD327C9616A414CA00604307 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
+		CDAB46E616A910E000CA8D93 /* libglfw3.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = libglfw3.a;
+			remoteRef = CDAB46E516A910E000CA8D93 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		CDAB46E816A910E000CA8D93 /* Boing */ = {
+			isa = PBXReferenceProxy;
+			fileType = "compiled.mach-o.executable";
+			name = Boing;
+			path = Boing.app;
+			remoteRef = CDAB46E716A910E000CA8D93 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		CDAB46EA16A910E000CA8D93 /* Gears */ = {
+			isa = PBXReferenceProxy;
+			fileType = "compiled.mach-o.executable";
+			name = Gears;
+			path = Gears.app;
+			remoteRef = CDAB46E916A910E000CA8D93 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		CDAB46EC16A910E000CA8D93 /* Split View */ = {
+			isa = PBXReferenceProxy;
+			fileType = "compiled.mach-o.executable";
+			name = "Split View";
+			path = "Split View.app";
+			remoteRef = CDAB46EB16A910E000CA8D93 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		CDAB46EE16A910E000CA8D93 /* Triangle */ = {
+			isa = PBXReferenceProxy;
+			fileType = "compiled.mach-o.executable";
+			name = Triangle;
+			path = Triangle.app;
+			remoteRef = CDAB46ED16A910E000CA8D93 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		CDAB46F016A910E000CA8D93 /* Wave */ = {
+			isa = PBXReferenceProxy;
+			fileType = "compiled.mach-o.executable";
+			name = Wave;
+			path = Wave.app;
+			remoteRef = CDAB46EF16A910E000CA8D93 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		CDAB46F216A910E000CA8D93 /* accuracy */ = {
+			isa = PBXReferenceProxy;
+			fileType = "compiled.mach-o.executable";
+			name = accuracy;
+			path = accuracy.app;
+			remoteRef = CDAB46F116A910E000CA8D93 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		CDAB46F416A910E000CA8D93 /* clipboard */ = {
+			isa = PBXReferenceProxy;
+			fileType = "compiled.mach-o.executable";
+			path = clipboard;
+			remoteRef = CDAB46F316A910E000CA8D93 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		CDAB46F616A910E000CA8D93 /* defaults */ = {
+			isa = PBXReferenceProxy;
+			fileType = "compiled.mach-o.executable";
+			path = defaults;
+			remoteRef = CDAB46F516A910E000CA8D93 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		CDAB46F816A910E000CA8D93 /* events */ = {
+			isa = PBXReferenceProxy;
+			fileType = "compiled.mach-o.executable";
+			path = events;
+			remoteRef = CDAB46F716A910E000CA8D93 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		CDAB46FA16A910E000CA8D93 /* fsaa */ = {
+			isa = PBXReferenceProxy;
+			fileType = "compiled.mach-o.executable";
+			path = fsaa;
+			remoteRef = CDAB46F916A910E000CA8D93 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		CDAB46FC16A910E000CA8D93 /* fsfocus */ = {
+			isa = PBXReferenceProxy;
+			fileType = "compiled.mach-o.executable";
+			path = fsfocus;
+			remoteRef = CDAB46FB16A910E000CA8D93 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		CDAB46FE16A910E000CA8D93 /* gamma */ = {
+			isa = PBXReferenceProxy;
+			fileType = "compiled.mach-o.executable";
+			path = gamma;
+			remoteRef = CDAB46FD16A910E000CA8D93 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		CDAB470016A910E000CA8D93 /* glfwinfo */ = {
+			isa = PBXReferenceProxy;
+			fileType = "compiled.mach-o.executable";
+			path = glfwinfo;
+			remoteRef = CDAB46FF16A910E000CA8D93 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		CDAB470216A910E000CA8D93 /* iconify */ = {
+			isa = PBXReferenceProxy;
+			fileType = "compiled.mach-o.executable";
+			path = iconify;
+			remoteRef = CDAB470116A910E000CA8D93 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		CDAB470416A910E000CA8D93 /* joysticks */ = {
+			isa = PBXReferenceProxy;
+			fileType = "compiled.mach-o.executable";
+			path = joysticks;
+			remoteRef = CDAB470316A910E000CA8D93 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		CDAB470616A910E000CA8D93 /* modes */ = {
+			isa = PBXReferenceProxy;
+			fileType = "compiled.mach-o.executable";
+			path = modes;
+			remoteRef = CDAB470516A910E000CA8D93 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		CDAB470816A910E000CA8D93 /* peter */ = {
+			isa = PBXReferenceProxy;
+			fileType = "compiled.mach-o.executable";
+			path = peter;
+			remoteRef = CDAB470716A910E000CA8D93 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		CDAB470A16A910E000CA8D93 /* reopen */ = {
+			isa = PBXReferenceProxy;
+			fileType = "compiled.mach-o.executable";
+			path = reopen;
+			remoteRef = CDAB470916A910E000CA8D93 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		CDAB470C16A910E000CA8D93 /* sharing */ = {
+			isa = PBXReferenceProxy;
+			fileType = "compiled.mach-o.executable";
+			name = sharing;
+			path = sharing.app;
+			remoteRef = CDAB470B16A910E000CA8D93 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		CDAB470E16A910E000CA8D93 /* tearing */ = {
+			isa = PBXReferenceProxy;
+			fileType = "compiled.mach-o.executable";
+			name = tearing;
+			path = tearing.app;
+			remoteRef = CDAB470D16A910E000CA8D93 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		CDAB471016A910E000CA8D93 /* threads */ = {
+			isa = PBXReferenceProxy;
+			fileType = "compiled.mach-o.executable";
+			name = threads;
+			path = threads.app;
+			remoteRef = CDAB470F16A910E000CA8D93 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		CDAB471216A910E000CA8D93 /* title */ = {
+			isa = PBXReferenceProxy;
+			fileType = "compiled.mach-o.executable";
+			name = title;
+			path = title.app;
+			remoteRef = CDAB471116A910E000CA8D93 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		CDAB471416A910E000CA8D93 /* windows */ = {
+			isa = PBXReferenceProxy;
+			fileType = "compiled.mach-o.executable";
+			name = windows;
+			path = windows.app;
+			remoteRef = CDAB471316A910E000CA8D93 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
 /* End PBXReferenceProxy section */
 
 /* Begin PBXResourcesBuildPhase section */
@@ -744,6 +1148,16 @@
 			name = "libmoai-osx-zlcore";
 			targetProxy = CD90776816A4251C0038CB0B /* PBXContainerItemProxy */;
 		};
+		CDABCA3416A940C200A5C1D8 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = glfw;
+			targetProxy = CDABCA3316A940C200A5C1D8 /* PBXContainerItemProxy */;
+		};
+		CDABCA6916A95D7600A5C1D8 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = glfw;
+			targetProxy = CDABCA6816A95D7600A5C1D8 /* PBXContainerItemProxy */;
+		};
 /* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
@@ -778,14 +1192,14 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = NO;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				HEADER_SEARCH_PATHS = (
-					/usr/local/include,
+					"$(inherited)",
 					"\"$(SRCROOT)/3rdparty/moai-dev/src\"/**",
 					"\"$(SRCROOT)/3rdparty/moai-dev/3rdparty/lua-5.1.3/src\"",
 				);
 				INFOPLIST_FILE = "Turk/Turk-Info.plist";
 				LIBRARY_SEARCH_PATHS = "$(inherited)";
 				MACOSX_DEPLOYMENT_TARGET = "";
-				OTHER_LDFLAGS = "-lglfw";
+				OTHER_LDFLAGS = "";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = "";
 				WRAPPER_EXTENSION = app;
@@ -818,14 +1232,14 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = NO;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				HEADER_SEARCH_PATHS = (
-					/usr/local/include,
+					"$(inherited)",
 					"\"$(SRCROOT)/3rdparty/moai-dev/src\"/**",
 					"\"$(SRCROOT)/3rdparty/moai-dev/3rdparty/lua-5.1.3/src\"",
 				);
 				INFOPLIST_FILE = "Turk/Turk-Info.plist";
 				LIBRARY_SEARCH_PATHS = "$(inherited)";
 				MACOSX_DEPLOYMENT_TARGET = "";
-				OTHER_LDFLAGS = "-lglfw";
+				OTHER_LDFLAGS = "";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = "";
 				WRAPPER_EXTENSION = app;
@@ -835,8 +1249,8 @@
 		E68ED88215E06C0F0013F6C2 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				HEADER_SEARCH_PATHS = /usr/local/include;
-				LIBRARY_SEARCH_PATHS = /usr/local/lib;
+				HEADER_SEARCH_PATHS = "\"$(SOURCE_ROOT)/3rdparty/glfw3/include\"";
+				LIBRARY_SEARCH_PATHS = "";
 				ONLY_ACTIVE_ARCH = YES;
 				OTHER_LDFLAGS = "";
 			};
@@ -845,8 +1259,8 @@
 		E68ED88315E06C0F0013F6C2 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				HEADER_SEARCH_PATHS = /usr/local/include;
-				LIBRARY_SEARCH_PATHS = /usr/local/lib;
+				HEADER_SEARCH_PATHS = "\"$(SOURCE_ROOT)/3rdparty/glfw3/include\"";
+				LIBRARY_SEARCH_PATHS = "";
 				ONLY_ACTIVE_ARCH = YES;
 				OTHER_LDFLAGS = "";
 			};
@@ -885,16 +1299,16 @@
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				HEADER_SEARCH_PATHS = (
-					/usr/local/include,
 					"\"$(SRCROOT)/3rdparty/moai-dev/src\"/**",
 					"\"$(SRCROOT)/3rdparty/moai-dev/3rdparty/lua-5.1.3/src\"",
+					"$(inherited)",
 				);
 				LD_DYLIB_INSTALL_NAME = "";
 				LIBRARY_SEARCH_PATHS = "$(inherited)";
 				MACOSX_DEPLOYMENT_TARGET = "";
 				ONLY_ACTIVE_ARCH = YES;
 				OTHER_CPLUSPLUSFLAGS = "$(OTHER_CFLAGS)";
-				OTHER_LDFLAGS = "-lglfw";
+				OTHER_LDFLAGS = "";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = "";
 				VALID_ARCHS = "i386 x86_64";
@@ -919,16 +1333,16 @@
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				HEADER_SEARCH_PATHS = (
-					/usr/local/include,
 					"\"$(SRCROOT)/3rdparty/moai-dev/src\"/**",
 					"\"$(SRCROOT)/3rdparty/moai-dev/3rdparty/lua-5.1.3/src\"",
+					"$(inherited)",
 				);
 				LD_DYLIB_INSTALL_NAME = "";
 				LIBRARY_SEARCH_PATHS = "$(inherited)";
 				MACOSX_DEPLOYMENT_TARGET = "";
 				ONLY_ACTIVE_ARCH = YES;
 				OTHER_CPLUSPLUSFLAGS = "$(OTHER_CFLAGS)";
-				OTHER_LDFLAGS = "-lglfw";
+				OTHER_LDFLAGS = "";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = "";
 				VALID_ARCHS = "i386 x86_64";

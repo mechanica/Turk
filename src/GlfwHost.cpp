@@ -10,7 +10,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
-#include <GL/glfw.h>
+#include <GL/glfw3.h>
 #include <aku/AKU.h>
 #include <aku/AKU-debugger.h>
 #include <aku/AKU-luaext.h>
@@ -43,19 +43,30 @@ namespace GLFWInputDeviceSensorID {
 
 int windowWidth;
 int windowHeight;
+GLFWwindow window;
+const char *windowTitle;
 bool isFullscreen = FALSE;
+
+GLFWwindow getWindow()
+{
+    return window;
+}
 
 void _AKUOpenWindowFunc( const char* title, int width, int height )
 {
-    if( !glfwOpenWindow(width, height, 0, 0, 0, 0, 0, 0, GLFW_WINDOW) )
+    windowTitle = title;
+    window = glfwCreateWindow(width, height, windowTitle, NULL, NULL);
+    if( !window )
     {
         glfwTerminate();
         exit(EXIT_FAILURE);
     } else {
-        glfwSetWindowTitle(title);
+        glfwMakeContextCurrent(window);
         AKUDetectGfxContext();
+        
         AKUSetScreenSize( width, height );
         AKUSetViewSize( width, height );
+        
         SetupInputCallbacks();
     }
 }
@@ -64,15 +75,24 @@ void _AKUEnterFullscreenFunc()
 {
     if (!isFullscreen) {
         isFullscreen = TRUE;
-        glfwGetWindowSize(&windowWidth, &windowHeight);
+        
+        glfwGetWindowSize(window, &windowWidth, &windowHeight);
+        
         GLFWvidmode mode;
-        glfwGetDesktopMode( &mode );
-        glfwCloseWindow();
-        glfwOpenWindow(mode.Width, mode.Height, 0, 0, 0, 0, 0, 0, GLFW_FULLSCREEN);
-        glfwEnable( GLFW_MOUSE_CURSOR );
+        GLFWmonitor primaryMonitor = glfwGetPrimaryMonitor();
+        glfwGetVideoMode( primaryMonitor, &mode );
+        
+        glfwDestroyWindow(window);
+        window = glfwCreateWindow(mode.width, mode.height, windowTitle, primaryMonitor, NULL);
+        
+        glfwMakeContextCurrent(window);
         AKUDetectGfxContext();
-        AKUSetScreenSize( mode.Width, mode.Height );
-        AKUSetViewSize( mode.Width, mode.Height );
+        
+        glfwSetInputMode(window, GLFW_CURSOR_MODE, GLFW_CURSOR_NORMAL);
+
+        AKUSetScreenSize( mode.width, mode.height );
+        AKUSetViewSize( mode.width, mode.height );
+        
         SetupInputCallbacks();
     }
 }
@@ -81,11 +101,16 @@ void _AKUExitFullscreenFunc()
 {
     if (isFullscreen) {
         isFullscreen = FALSE;
-        glfwCloseWindow();
-        glfwOpenWindow(windowWidth, windowHeight, 0, 0, 0, 0, 0, 0, GLFW_WINDOW);
+        
+        glfwDestroyWindow(window);
+        window = glfwCreateWindow(windowWidth, windowHeight, windowTitle, NULL, NULL);
+        
+        glfwMakeContextCurrent(window);
         AKUDetectGfxContext();
+        
         AKUSetScreenSize( windowWidth, windowHeight );
         AKUSetViewSize( windowWidth, windowHeight );
+        
         SetupInputCallbacks();
     }
 }
@@ -96,9 +121,8 @@ void _AKUErrorTracebackFunc ( const char* message, lua_State* L, int level )
     //AKUDebugHarnessHandleError(message, L, level);
 }
 
-void GLFWCALL onMouseButton( int button, int action )
+void onMouseButton( GLFWwindow window, int button, int action )
 {
-    printf("onMouseButton");
     bool isPress = (action == GLFW_PRESS);
     switch (button) {
         case GLFW_MOUSE_BUTTON_LEFT:
@@ -115,33 +139,34 @@ void GLFWCALL onMouseButton( int button, int action )
     }
 }
 
-void GLFWCALL onKeyboardKey( int key, int action )
+void onKeyboardKey( GLFWwindow window, int key, int action )
 {
     bool isDown = (action == GLFW_PRESS);
     AKUEnqueueKeyboardEvent(GLFWInputDeviceID::DEVICE, GLFWInputDeviceSensorID::KEYBOARD, key, isDown);
 }
 
-void GLFWCALL onKeyboardChar( int unicode, int action )
+void onKeyboardChar( GLFWwindow window, int unicode, int action )
 {
     
 }
 
-void GLFWCALL onMouseMove( int x, int y )
+void onMouseMove( GLFWwindow window, int x, int y )
 {
     AKUEnqueuePointerEvent(GLFWInputDeviceID::DEVICE, GLFWInputDeviceSensorID::POINTER, x, y);
 }
 
-void GLFWCALL onMouseWheel( int pos )
+void onMouseWheel( GLFWwindow window, double x, double y )
 {
-    AKUEnqueueWheelEvent(GLFWInputDeviceID::DEVICE, GLFWInputDeviceSensorID::MOUSE_WHEEL, pos);
+	UNUSED(x);
+	AKUEnqueueWheelEvent(GLFWInputDeviceID::DEVICE, GLFWInputDeviceSensorID::MOUSE_WHEEL, y);
 }
 
-void GLFWCALL onWindowSize( int width, int height )
+void onWindowSize( GLFWwindow window, int width, int height )
 {
     AKUSetViewSize( width, height );
 }
 
-int GLFWCALL onWindowClose()
+int onWindowClose( GLFWwindow window )
 {
     int result = GL_TRUE;
     
@@ -195,7 +220,7 @@ int GlfwHost( int argc, const char * argv[] )
         }
         
     }
-        
+    
     GlfwEventLoop();
     
     return 0;
@@ -230,12 +255,12 @@ void LoadAKUModules()
 
 void SetupInputCallbacks()
 {
-    glfwSetWindowSizeCallback(onWindowSize);
-    glfwSetWindowCloseCallback(onWindowClose);
-    glfwSetKeyCallback(onKeyboardKey);
-    glfwSetMouseButtonCallback(onMouseButton);
-    glfwSetMousePosCallback(onMouseMove);
-    glfwSetMouseWheelCallback(onMouseWheel);
+    glfwSetWindowSizeCallback( window, onWindowSize );
+    glfwSetWindowCloseCallback( window, onWindowClose );
+    glfwSetKeyCallback( window, onKeyboardKey);
+    glfwSetMouseButtonCallback( window, onMouseButton);
+    glfwSetCursorPosCallback( window, onMouseMove);
+    glfwSetScrollCallback(window, onMouseWheel);
 }
 
 void SetupInputMapping()
@@ -267,14 +292,15 @@ void SetupErrorMapping()
 void GlfwEventLoop()
 {
     int running = GL_TRUE;
-    while(running)
+    while(window && running)
     {
         AKUUpdate();
-        if (glfwGetWindowParam(GLFW_OPENED)) {
+        if (!glfwGetWindowParam(window, GLFW_SHOULD_CLOSE)) {
             glClear(GL_COLOR_BUFFER_BIT);
             AKURender();
-            glfwSwapBuffers();
-            running = glfwGetWindowParam(GLFW_OPENED);
+            glfwSwapBuffers(window);
+            glfwPollEvents();
+            running = !glfwGetWindowParam(window, GLFW_SHOULD_CLOSE);
         }
     }
 }
