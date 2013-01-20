@@ -101,7 +101,7 @@ int MOAIHostMgr::_restoreWindow( lua_State* L )
 int MOAIHostMgr::_setInputMode( lua_State* L )
 {
 	int mode = lua_tointeger(L, 1);
-    int value = lua_tointeger(L, 1);
+	int value = lua_tointeger(L, 1);
 	glfwSetInputMode( getWindow(), mode, value);
 	return 0;
 }
