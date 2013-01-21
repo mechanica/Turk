@@ -35,7 +35,8 @@ static void pushLuaKeyNumberValue( lua_State* L, const char* s, int value )
 int MOAIHostMgr::_getVideoModes( lua_State* L )
 {
 	int numModes;
-	const GLFWvidmode *videoModes = glfwGetVideoModes( getWindow(), &numModes);
+	GLFWmonitor *primaryMonitor = glfwGetPrimaryMonitor();
+	const GLFWvidmode *videoModes = glfwGetVideoModes( primaryMonitor, &numModes);
 	
 	lua_newtable(L);
 	int luaVideoModesTableIndex = lua_gettop(L);
@@ -57,9 +58,8 @@ int MOAIHostMgr::_getVideoModes( lua_State* L )
 
 int MOAIHostMgr::_getDesktopVideoMode( lua_State* L )
 {
-	GLFWmonitor primaryMonitor = glfwGetPrimaryMonitor();
-	GLFWvidmode videoMode;
-	glfwGetVideoMode(primaryMonitor, &videoMode);
+	GLFWmonitor *primaryMonitor = glfwGetPrimaryMonitor();
+	GLFWvidmode videoMode = glfwGetVideoMode(primaryMonitor);
 	lua_newtable(L);
 	pushLuaKeyNumberValue(L, "width",       videoMode.width);
 	pushLuaKeyNumberValue(L, "height",      videoMode.height);

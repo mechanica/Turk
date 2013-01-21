@@ -4,5 +4,5 @@
 	ignore = dirty
 [submodule "3rdparty/glfw3"]
 	path = 3rdparty/glfw3
-	url = git://git.code.sf.net/p/glfw/code
+	url = git://github.com/elmindreda/glfw.git
 	ignore = dirty
