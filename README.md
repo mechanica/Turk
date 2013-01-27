@@ -13,7 +13,7 @@ Pre-Build
 
 Only thing you need to do before building Mechanical Turk using Xcode is CMake GLFW.xcodeproj file.  
 ```
-cmake -G Xcode -DGLFW_CD_RESOURCES=OFF 3rdparty/glfw3/CMakeLists.txt
+cmake -G Xcode -DGLFW_USE_CHDIR=OFF 3rdparty/glfw3/CMakeLists.txt
 ```  
 Hope some day i'll find a way to make it even easier.
 
