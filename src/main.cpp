@@ -14,18 +14,18 @@ void initializeGLFW ();
 
 void initializeGLFW ()
 {
-    if( !glfwInit() )
-    {
-        exit(EXIT_FAILURE);
-    }
+	if( !glfwInit() )
+	{
+		exit(EXIT_FAILURE);
+	}
 }
 
 int main (int argc, const char * argv[])
 {
-    initializeGLFW();
-    GlfwHost(argc, argv);
-    
-    glfwTerminate();
-    exit(EXIT_SUCCESS);
-    return 0;
+	initializeGLFW();
+	GlfwHost(argc, argv);
+	
+	glfwTerminate();
+	exit(EXIT_SUCCESS);
+	return 0;
 }

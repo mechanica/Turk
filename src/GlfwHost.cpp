@@ -22,23 +22,23 @@
 #include "MOAIHostMgr.h"
 
 namespace GLFWInputDeviceID {
-    enum {
-        DEVICE,
-        TOTAL,
-    };
+	enum {
+		DEVICE,
+		TOTAL,
+	};
 }
 
 namespace GLFWInputDeviceSensorID {
-    enum {
-        KEYBOARD,
-        POINTER,
-        MOUSE_LEFT,
-        MOUSE_MIDDLE,
-        MOUSE_RIGHT,
-        MOUSE_WHEEL,
-        JOYSTICK,
-        TOTAL,
-    };
+	enum {
+		KEYBOARD,
+		POINTER,
+		MOUSE_LEFT,
+		MOUSE_MIDDLE,
+		MOUSE_RIGHT,
+		MOUSE_WHEEL,
+		JOYSTICK,
+		TOTAL,
+	};
 }
 
 int windowWidth;
@@ -49,26 +49,26 @@ bool isFullscreen = FALSE;
 
 GLFWwindow *getWindow()
 {
-    return window;
+	return window;
 }
 
 void _AKUOpenWindowFunc( const char* title, int width, int height )
 {
-    windowTitle = title;
-    window = glfwCreateWindow(width, height, windowTitle, NULL, NULL);
-    if( !window )
-    {
-        glfwTerminate();
-        exit(EXIT_FAILURE);
-    } else {
-        glfwMakeContextCurrent(window);
-        AKUDetectGfxContext();
-        
-        AKUSetScreenSize( width, height );
-        AKUSetViewSize( width, height );
-        
-        SetupInputCallbacks();
-    }
+	windowTitle = title;
+	window = glfwCreateWindow(width, height, windowTitle, NULL, NULL);
+	if( !window )
+	{
+		glfwTerminate();
+		exit(EXIT_FAILURE);
+	} else {
+		glfwMakeContextCurrent(window);
+		AKUDetectGfxContext();
+		
+		AKUSetScreenSize( width, height );
+		AKUSetViewSize( width, height );
+		
+		SetupInputCallbacks();
+	}
 }
 
 void _AKUEnterFullscreenFunc()
@@ -98,60 +98,60 @@ void _AKUEnterFullscreenFunc()
 
 void _AKUExitFullscreenFunc()
 {
-    if (isFullscreen) {
-        isFullscreen = FALSE;
-        
-        glfwDestroyWindow(window);
-        window = glfwCreateWindow(windowWidth, windowHeight, windowTitle, NULL, NULL);
-        
-        glfwMakeContextCurrent(window);
-        AKUDetectGfxContext();
-        
-        AKUSetScreenSize( windowWidth, windowHeight );
-        AKUSetViewSize( windowWidth, windowHeight );
-        
-        SetupInputCallbacks();
-    }
+	if (isFullscreen) {
+		isFullscreen = FALSE;
+		
+		glfwDestroyWindow(window);
+		window = glfwCreateWindow(windowWidth, windowHeight, windowTitle, NULL, NULL);
+		
+		glfwMakeContextCurrent(window);
+		AKUDetectGfxContext();
+		
+		AKUSetScreenSize( windowWidth, windowHeight );
+		AKUSetViewSize( windowWidth, windowHeight );
+		
+		SetupInputCallbacks();
+	}
 }
 
 void _AKUErrorTracebackFunc ( const char* message, lua_State* L, int level );
 void _AKUErrorTracebackFunc ( const char* message, lua_State* L, int level )
 {
-    //AKUDebugHarnessHandleError(message, L, level);
+	//AKUDebugHarnessHandleError(message, L, level);
 }
 
 void onMouseButton( GLFWwindow *window, int button, int action )
 {
-    bool isPress = (action == GLFW_PRESS);
-    switch (button) {
-        case GLFW_MOUSE_BUTTON_LEFT:
-            AKUEnqueueButtonEvent(GLFWInputDeviceID::DEVICE, GLFWInputDeviceSensorID::MOUSE_LEFT, isPress);
-            break;
-        case GLFW_MOUSE_BUTTON_MIDDLE:
-            AKUEnqueueButtonEvent(GLFWInputDeviceID::DEVICE, GLFWInputDeviceSensorID::MOUSE_MIDDLE, isPress);
-            break;
-        case GLFW_MOUSE_BUTTON_RIGHT:
-            AKUEnqueueButtonEvent(GLFWInputDeviceID::DEVICE, GLFWInputDeviceSensorID::MOUSE_RIGHT, isPress);
-            break;
-        default:
-            break;
-    }
+	bool isPress = (action == GLFW_PRESS);
+	switch (button) {
+		case GLFW_MOUSE_BUTTON_LEFT:
+			AKUEnqueueButtonEvent(GLFWInputDeviceID::DEVICE, GLFWInputDeviceSensorID::MOUSE_LEFT, isPress);
+			break;
+		case GLFW_MOUSE_BUTTON_MIDDLE:
+			AKUEnqueueButtonEvent(GLFWInputDeviceID::DEVICE, GLFWInputDeviceSensorID::MOUSE_MIDDLE, isPress);
+			break;
+		case GLFW_MOUSE_BUTTON_RIGHT:
+			AKUEnqueueButtonEvent(GLFWInputDeviceID::DEVICE, GLFWInputDeviceSensorID::MOUSE_RIGHT, isPress);
+			break;
+		default:
+			break;
+	}
 }
 
 void onKeyboardKey( GLFWwindow *window, int key, int action )
 {
-    bool isDown = (action == GLFW_PRESS);
-    AKUEnqueueKeyboardEvent(GLFWInputDeviceID::DEVICE, GLFWInputDeviceSensorID::KEYBOARD, key, isDown);
+	bool isDown = (action == GLFW_PRESS);
+	AKUEnqueueKeyboardEvent(GLFWInputDeviceID::DEVICE, GLFWInputDeviceSensorID::KEYBOARD, key, isDown);
 }
 
 void onKeyboardChar( GLFWwindow *window, int unicode, int action )
 {
-    
+	
 }
 
 void onMouseMove( GLFWwindow *window, int x, int y )
 {
-    AKUEnqueuePointerEvent(GLFWInputDeviceID::DEVICE, GLFWInputDeviceSensorID::POINTER, x, y);
+	AKUEnqueuePointerEvent(GLFWInputDeviceID::DEVICE, GLFWInputDeviceSensorID::POINTER, x, y);
 }
 
 void onMouseWheel( GLFWwindow *window, double x, double y )
@@ -162,130 +162,130 @@ void onMouseWheel( GLFWwindow *window, double x, double y )
 
 void onWindowSize( GLFWwindow *window, int width, int height )
 {
-    AKUSetViewSize( width, height );
+	AKUSetViewSize( width, height );
 }
 
 int onWindowClose( GLFWwindow *window )
 {
 	int result = GL_TRUE;
-    
+	
 	if ( !MOAIHostMgr::Get().GetOnWindowClosedLuaFunction()->IsNil() ) {
 		MOAILuaStateHandle state = MOAIHostMgr::Get().GetOnWindowClosedLuaFunction()->GetSelf();
 		state.DebugCall ( 0, 1 );
 		result = state.GetValue < bool >( 0, TRUE ) ? GL_TRUE : GL_FALSE;
 	}
-  
+	
 	return result;
 }
 
 static void _cleanup()
 {
-    AKUFinalize();
+	AKUFinalize();
 }
 
 int GlfwHost( int argc, const char * argv[] )
 {
-    atexit(_cleanup);
-    RefreshAKUContext();
-    
-    REGISTER_LUA_CLASS ( MOAIHostMgr )
+	atexit(_cleanup);
+	RefreshAKUContext();
+	
+	REGISTER_LUA_CLASS ( MOAIHostMgr )
 	printf("Registered MOAIHostMgr\n");
-    
-    // Load lua script from command-line argument.
-    
-    CFBundleRef mainBundle = CFBundleGetMainBundle();
-    
-    CFDictionaryRef infoDict = CFBundleGetInfoDictionary(mainBundle);
-    CFTypeRef scriptName = CFDictionaryGetValue(infoDict, CFSTR("MTMainScript"));
-    CFURLRef scriptURL = CFBundleCopyResourceURL(mainBundle, (CFStringRef)scriptName, CFSTR("lua"), NULL);
-    
-    if (scriptURL) {
-        CFStringRef scriptPath = CFURLCopyFileSystemPath(scriptURL, kCFURLPOSIXPathStyle);
-        CFStringEncoding encodingMethod = CFStringGetSystemEncoding();
-        
-        const char *path = CFStringGetCStringPtr(scriptPath, encodingMethod);
-        
-        AKURunScript ( path );
+	
+	// Load lua script from command-line argument.
+	
+	CFBundleRef mainBundle = CFBundleGetMainBundle();
+	
+	CFDictionaryRef infoDict = CFBundleGetInfoDictionary(mainBundle);
+	CFTypeRef scriptName = CFDictionaryGetValue(infoDict, CFSTR("MTMainScript"));
+	CFURLRef scriptURL = CFBundleCopyResourceURL(mainBundle, (CFStringRef)scriptName, CFSTR("lua"), NULL);
+	
+	if (scriptURL) {
+		CFStringRef scriptPath = CFURLCopyFileSystemPath(scriptURL, kCFURLPOSIXPathStyle);
+		CFStringEncoding encodingMethod = CFStringGetSystemEncoding();
+	
+		const char *path = CFStringGetCStringPtr(scriptPath, encodingMethod);
+		
+		AKURunScript ( path );
 
-    } else if (argc < 2) {
-    
-        AKURunScript("main.lua");
-    
-    } else {
-    
-        for (int i = 1; i < argc; ++i) {
-            const char* arg = argv[i];
-            AKURunScript(arg);
-        }
-        
-    }
-    
-    GlfwEventLoop();
-    
-    return 0;
+	} else if (argc < 2) {
+		
+		AKURunScript("main.lua");
+		
+	} else {
+		
+		for (int i = 1; i < argc; ++i) {
+			const char* arg = argv[i];
+			AKURunScript(arg);
+		}
+		
+	}
+	
+	GlfwEventLoop();
+	
+	return 0;
 }
 
 void RefreshAKUContext()
 {
-    AKUContextID context = AKUGetContext();
-    if (context) {
-        AKUDeleteContext(context);
-    }
-    AKUCreateContext();
-    
-    LoadAKUModules();
-    SetupInputMapping();
-    SetupWindowMapping();
-    //SetupErrorMapping();
-    
-    AKURunBytecode( moai_lua, moai_lua_SIZE );
+	AKUContextID context = AKUGetContext();
+	if (context) {
+		AKUDeleteContext(context);
+	}
+	AKUCreateContext();
+	
+	LoadAKUModules();
+	SetupInputMapping();
+	SetupWindowMapping();
+	//SetupErrorMapping();
+	
+	AKURunBytecode( moai_lua, moai_lua_SIZE );
 }
 
 void LoadAKUModules()
 {
-    AKUExtLoadLuacrypto ();
-    AKUExtLoadLuacurl ();
-    AKUExtLoadLuafilesystem ();
-    AKUExtLoadLuasocket ();
-    AKUExtLoadLuasql ();
-    AKUUntzInit ();
-    AKUAudioSamplerInit();
+	AKUExtLoadLuacrypto ();
+	AKUExtLoadLuacurl ();
+	AKUExtLoadLuafilesystem ();
+	AKUExtLoadLuasocket ();
+	AKUExtLoadLuasql ();
+	AKUUntzInit ();
+	AKUAudioSamplerInit();
 }
 
 void SetupInputCallbacks()
 {
-    glfwSetWindowSizeCallback( window, onWindowSize );
-    glfwSetWindowCloseCallback( window, onWindowClose );
-    glfwSetKeyCallback( window, onKeyboardKey);
-    glfwSetMouseButtonCallback( window, onMouseButton);
-    glfwSetCursorPosCallback( window, onMouseMove);
-    glfwSetScrollCallback( window, onMouseWheel);
+	glfwSetWindowSizeCallback( window, onWindowSize );
+	glfwSetWindowCloseCallback( window, onWindowClose );
+	glfwSetKeyCallback( window, onKeyboardKey);
+	glfwSetMouseButtonCallback( window, onMouseButton);
+	glfwSetCursorPosCallback( window, onMouseMove);
+	glfwSetScrollCallback( window, onMouseWheel);
 }
 
 void SetupInputMapping()
 {
-    AKUSetInputConfigurationName ( "AKU_GLFW" );
-    AKUReserveInputDevices( GLFWInputDeviceID::TOTAL );
-    AKUSetInputDevice(GLFWInputDeviceID::DEVICE, "device");
-    AKUReserveInputDeviceSensors(GLFWInputDeviceID::DEVICE, GLFWInputDeviceSensorID::TOTAL);
-    AKUSetInputDeviceKeyboard(GLFWInputDeviceID::DEVICE,    GLFWInputDeviceSensorID::KEYBOARD,      "keyboard");
-    AKUSetInputDevicePointer(GLFWInputDeviceID::DEVICE,     GLFWInputDeviceSensorID::POINTER,       "pointer");
-    AKUSetInputDeviceButton(GLFWInputDeviceID::DEVICE,      GLFWInputDeviceSensorID::MOUSE_LEFT,    "mouseLeft");
-    AKUSetInputDeviceButton(GLFWInputDeviceID::DEVICE,      GLFWInputDeviceSensorID::MOUSE_MIDDLE,  "mouseMiddle");
-    AKUSetInputDeviceButton(GLFWInputDeviceID::DEVICE,      GLFWInputDeviceSensorID::MOUSE_RIGHT,   "mouseRight");
-    AKUSetInputDeviceWheel(GLFWInputDeviceID::DEVICE,       GLFWInputDeviceSensorID::MOUSE_WHEEL,   "mouseWheel");
+	AKUSetInputConfigurationName ( "AKU_GLFW" );
+	AKUReserveInputDevices( GLFWInputDeviceID::TOTAL );
+	AKUSetInputDevice(GLFWInputDeviceID::DEVICE, "device");
+	AKUReserveInputDeviceSensors(GLFWInputDeviceID::DEVICE, GLFWInputDeviceSensorID::TOTAL);
+	AKUSetInputDeviceKeyboard(GLFWInputDeviceID::DEVICE,    GLFWInputDeviceSensorID::KEYBOARD,      "keyboard");
+	AKUSetInputDevicePointer(GLFWInputDeviceID::DEVICE,     GLFWInputDeviceSensorID::POINTER,       "pointer");
+	AKUSetInputDeviceButton(GLFWInputDeviceID::DEVICE,      GLFWInputDeviceSensorID::MOUSE_LEFT,    "mouseLeft");
+	AKUSetInputDeviceButton(GLFWInputDeviceID::DEVICE,      GLFWInputDeviceSensorID::MOUSE_MIDDLE,  "mouseMiddle");
+	AKUSetInputDeviceButton(GLFWInputDeviceID::DEVICE,      GLFWInputDeviceSensorID::MOUSE_RIGHT,   "mouseRight");
+	AKUSetInputDeviceWheel(GLFWInputDeviceID::DEVICE,       GLFWInputDeviceSensorID::MOUSE_WHEEL,   "mouseWheel");
 }
 
 void SetupWindowMapping()
 {
-    AKUSetFunc_OpenWindow(_AKUOpenWindowFunc);
-    AKUSetFunc_EnterFullscreenMode(_AKUEnterFullscreenFunc);
-    AKUSetFunc_ExitFullscreenMode(_AKUExitFullscreenFunc);
+	AKUSetFunc_OpenWindow(_AKUOpenWindowFunc);
+	AKUSetFunc_EnterFullscreenMode(_AKUEnterFullscreenFunc);
+	AKUSetFunc_ExitFullscreenMode(_AKUExitFullscreenFunc);
 }
 
 void SetupErrorMapping()
 {
-    AKUSetFunc_ErrorTraceback(_AKUErrorTracebackFunc);
+	AKUSetFunc_ErrorTraceback(_AKUErrorTracebackFunc);
 }
 
 void GlfwEventLoop()
