@@ -290,16 +290,19 @@ void SetupErrorMapping()
 
 void GlfwEventLoop()
 {
-    int running = GL_TRUE;
-    while(window && running)
-    {
-        AKUUpdate();
-        if (!glfwGetWindowParam(window, GLFW_SHOULD_CLOSE)) {
-            glClear(GL_COLOR_BUFFER_BIT);
-            AKURender();
-            glfwSwapBuffers(window);
-            glfwPollEvents();
-            running = !glfwGetWindowParam(window, GLFW_SHOULD_CLOSE);
-        }
-    }
+	int running = GL_TRUE;
+	while(window && running)
+	{
+		AKUUpdate();
+		if (!glfwGetWindowParam(window, GLFW_SHOULD_CLOSE)) {
+			glClear(GL_COLOR_BUFFER_BIT);
+			AKURender();
+			glfwSwapBuffers(window);
+			glfwPollEvents();
+			running = !glfwGetWindowParam(window, GLFW_SHOULD_CLOSE);
+		}
+		if (!glfwGetWindowParam(window, GLFW_FOCUSED)) {
+			usleep(1000000/60);
+		}
+	}
 }
